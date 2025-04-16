@@ -1,0 +1,47 @@
+MEdia Center Router
+-----------------------
+
+enable
+configure terminal
+hostname MediaCenter-Router
+
+interface Fa3/0
+ ip address 10.10.10.10 255.255.255.252
+ no shutdown
+
+router rip version 2
+network 10.10.10.0 
+ network 192.168.11.0
+ network 192.168.12.0
+ network 192.168.13.0
+ network 192.168.14.0
+no auto summary 
+
+interface GigabitEthernet0/0.11
+ encapsulation dot1Q 11
+ ip address 192.168.11.1 255.255.255.0
+interface GigabitEthernet0/0.12
+ encapsulation dot1Q 12
+ ip address 192.168.12.1 255.255.255.0
+interface GigabitEthernet0/0.13
+ encapsulation dot1Q 13
+ ip address 192.168.13.1 255.255.255.0
+interface GigabitEthernet0/0.14
+ encapsulation dot1Q 14
+ ip address 192.168.14.1 255.255.255.0
+
+
+ip dhcp pool vlan11-pool
+ network 192.168.11.0 255.255.255.0
+ default-router 192.168.11.1
+ip dhcp pool vlan12-pool
+ network 192.168.12.0 255.255.255.0
+ default-router 192.168.12.1
+ip dhcp pool vlan13-pool
+ network 192.168.13.0 255.255.255.0
+ default-router 192.168.13.1
+ip dhcp pool vlan14-pool
+ network 192.168.14.0 255.255.255.0
+ default-router 192.168.14.1
+
+exit

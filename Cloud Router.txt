@@ -1,0 +1,20 @@
+Cloud Router
+--------------
+
+enable
+configure terminal
+hostname Cloud-Router
+
+interface Fa1/0
+ ip address 10.10.10.6 255.255.255.252
+ no shutdown
+
+interface Fa0/0
+ ip address 20.0.0.1 255.255.255.252
+ no shutdown
+
+router rip version 2
+network 10.10.10.0 
+network 20.0.0.0 
+no auto summary 
+exit
